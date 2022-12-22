@@ -9,7 +9,8 @@ import React from 'react'
  
 
 const App = () => {
-  const course = {
+  const course = [
+  {
     id: 1,
     name: 'Half Stack application development',
     parts: [
@@ -29,11 +30,29 @@ const App = () => {
         id: 3
       }
     ]
+  },
+  {
+    name: 'Node.js',
+    id: 2,
+    parts: [
+      {
+        name: 'Routing',
+        exercises: 3,
+        id: 1
+      },
+      {
+        name: 'Middlewares',
+        exercises: 7,
+        id: 2
+      }
+    ]
   }
+]
 
   return (
     <div>
-     <Course parts={course.parts} course={course.name } />
+     <Course parts={course[0].parts} course={course[0].name } />
+     <Course parts={course[1].parts} course={course[1].name } />
 
       
     </div>
