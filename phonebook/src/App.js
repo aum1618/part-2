@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import List from "./Components/List";
 
 function NameList() {
   // Declare a state variable called "names" with an initial value of an empty array
@@ -70,21 +71,10 @@ function NameList() {
         <button type="submit">Add</button>
       </form>
       <h2>Numbers</h2>
-      <div>
-        {names.map((name, index) => (
-          <p key={index}>
-            {name.name} {name.number}
-          </p>
-        ))}
-      </div>
+      <List list={names} />
+    
       <h2>Filtered list</h2>
-      <div>
-        {filterList.map((name, index) => (
-          <p key={index}>
-            {name.name} {name.number}
-          </p>
-        ))}
-      </div>
+      <List list={filterList} />
     </div>
   );
 }
