@@ -6,21 +6,32 @@ function NameList() {
 
   // Declare a state variable called "name" with an initial value of an empty string
   const [name, setName] = useState('');
+  const [number,setNumber]=useState('')
 
   // Event handler for the input element's "onChange" event
   function handleChange(event) {
     setName(event.target.value);
   }
+  function handleNumber(event) {
+    setNumber(event.target.value);
+  }
+
 
   // Event handler for the form's "onSubmit" event
   function handleSubmit(event) {
     event.preventDefault();
+    if(names.name===name){
+      alert(`${name} is already added to phonebook`)
+    }else{
 
     // Add the current value of "name" to the "names" array
-    setNames([...names, name]);
+    let Data={name:name,number:number}
+    setNames([...names,Data]);
 
     // Reset the value of "name" to an empty string
     setName('');
+    setNumber('')
+    }
   }
 
   return (
@@ -29,14 +40,16 @@ function NameList() {
       <form onSubmit={handleSubmit}>
         <label>
           Name:
-          <input type="text" value={name} onChange={handleChange} />
+          <input type="text" value={name} onChange={handleChange} /><br />
+          Number:
+          <input type="text" value={number} onChange={handleNumber} />
         </label>
         <button type="submit">Add</button>
       </form>
       <h2>Numbers</h2>
       <div>
         {names.map((name, index) => (
-          <p key={index}>{name}</p>
+          <p key={index}>{name.name} {name.number}</p>
         ))}
       </div>
     </div>
