@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import List from "./Components/List";
+import axios from "axios";
+import { useEffect } from "react";
 
 function NameList() {
   // Declare a state variable called "names" with an initial value of an empty array
@@ -8,11 +10,21 @@ function NameList() {
   const [filterList, setFilterList] = useState([]);
 
   // Declare a state variable called "name" with an initial value of an empty string
-  const [name, setName] = useState("");
+  const [newName, setName] = useState("");
   const [number, setNumber] = useState("");
   // Declare a state variable called "filter" with an initial value of an empty string
   const [filter, setFilter] = useState("");
 
+  useEffect(()=>{
+    const promise=axios.get('http://localhost:3001/persons')
+    .then(response=>{
+      setNames(response.data)
+  
+    })
+  
+  })
+
+ 
   // Event handler for the input element's "onChange" event
   function handleChange(event) {
     setName(event.target.value);
@@ -35,20 +47,22 @@ function NameList() {
   }
 
   // Event handler for the form's "onSubmit" event
-  function handleSubmit(event) {
+   // Event handler for the form's "onSubmit" event
+   function handleSubmit(event) {
     event.preventDefault();
-    if (names.some((name) => names.name === name)) {
-      alert(`${name} is already added to phonebook`);
+    if (names.some((newName) => name.name === newName)) {
+      alert(`${newName} is already added to phonebook`);
     } else {
-      // Add the current value of "name" and "number" to the "names" array as an object
-      const data = { name: name, number: number };
-      setNames([...names, data]);
+      // Add the current value of "name" to the "names" array
+      let Data = { name: newName, number: number };
+      setNames([...names, Data]);
 
-      // Reset the value of "name" and "number" to empty strings
-      setName("");
-      setNumber("");
+      // Reset the value of "name" to an empty string
+      setName('');
+      setNumber('');
     }
   }
+
 
   return (
     <div>
@@ -62,7 +76,7 @@ function NameList() {
         <h2>Add a New</h2>
         <label>
           Name:
-          <input type="text" value={name} onChange={handleChange} />
+          <input type="text" value={newName} onChange={handleChange} />
           <br />
           <br />
           Number:
