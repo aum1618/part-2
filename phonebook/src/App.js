@@ -50,7 +50,7 @@ function NameList() {
    // Event handler for the form's "onSubmit" event
    function handleSubmit(event) {
     event.preventDefault();
-    if (names.some((newName) => name.name === newName)) {
+    if (names.some((newName) => names.name === newName)) {
       alert(`${newName} is already added to phonebook`);
     } else {
       // Add the current value of "name" to the "names" array
