@@ -56,12 +56,22 @@ function NameList() {
       // Add the current value of "name" to the "names" array
       let Data = { name: newName, number: number };
       setNames([...names, Data]);
+      changedb()
+      
 
       // Reset the value of "name" to an empty string
       setName('');
       setNumber('');
     }
   }
+  const changedb=()=>{
+    const newObj={name:newName,number:number}
+    axios.post('http://localhost:3001/persons',newObj)
+    .then(response=>{
+      console.log(response)
+    })
+  }
+  
 
 
   return (
